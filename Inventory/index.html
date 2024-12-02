@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Tracker with Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js" defer></script>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-gray-100 min-h-screen flex flex-col items-center py-10">
+
+    <!-- Header -->
+    <header class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-blue-600 drop-shadow-md">📦 Retail Inventory Tracker</h1>
+        <p class="text-gray-600 text-lg mt-2">Track your stock like a pro with ease!</p>
+    </header>
+
+    <!-- Controls -->
+    <div class="flex justify-between items-center w-full max-w-4xl mb-4">
+        <!-- Search -->
+        <div class="flex items-center bg-white shadow-md rounded-md overflow-hidden w-full max-w-md">
+            <input type="text" id="searchInput" placeholder="Search inventory..."
+                class="w-full px-4 py-2 text-gray-700 focus:outline-none">
+            <span class="p-2 bg-blue-500 text-white">
+                🔍
+            </span>
+        </div>
+
+        <!-- Add Inventory Button -->
+        <button id="openModalBtn"
+            class="bg-green-500 text-white py-2 px-6 rounded-full shadow-lg hover:bg-green-600 hover:shadow-xl transition-transform transform hover:scale-105">
+            ➕ Add Inventory
+        </button>
+    </div>
+
+    <!-- Inventory Form Modal -->
+    <div id="inventoryModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Add Inventory Item</h2>
+            <form id="inventoryForm" class="space-y-4">
+                <div>
+                    <label for="productName" class="block text-sm font-medium text-gray-700">Product Name</label>
+                    <input type="text" id="productName" placeholder="Enter product name"
+                        class="mt-1 w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                    <input type="number" id="quantity" placeholder="Enter quantity" min="1"
+                        class="mt-1 w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                        required>
+                </div>
+                <div>
+                    <label for="measurement" class="block text-sm font-medium text-gray-700">Measurement Type</label>
+                    <select id="measurement"
+                        class="mt-1 w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="grams">Grams (g)</option>
+                        <option value="liters">Liters (L)</option>
+                        <option value="milliliters">Milliliters (mL)</option>
+                        <option value="packs">Packs</option>
+                        <option value="boxes">Boxes</option>
+                        <option value="units">Units</option>
+                    </select>
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="closeModalBtn"
+                        class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
+                        Cancel
+                    </button>
+                    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <section class="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Inventory List</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="px-4 py-2 text-left">#</th>
+                        <th class="px-4 py-2 text-left">Product Name</th>
+                        <th class="px-4 py-2 text-left">Quantity</th>
+                        <th class="px-4 py-2 text-left">Measurement</th>
+                        <th class="px-4 py-2 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTable" class="divide-y">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
