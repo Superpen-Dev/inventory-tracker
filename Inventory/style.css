@@ -1,1 +1,19 @@
+@media screen and (max-width: 768px) {
+  #searchAndModal {
+    width: 90%; 
+    padding: 15px; 
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+  }
+}
 
+@media screen and (max-width: 480px) {
+  #searchAndModal {
+    width: 100%; 
+    padding: 10px; 
+    display: flex;
+    justify-content: space-between;
+    gap:20px;
+  }
+}
